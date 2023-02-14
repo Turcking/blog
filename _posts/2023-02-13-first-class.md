@@ -52,66 +52,68 @@ eNSP 是一款由华为自主开发的、免费的、可扩展的、图形化操
 
 ### 给端口设置IP
 
-	[Huawei]interface g0/0/0    #进入端口g0/0/0
-	[Huawei-GigabitEthernet0/0/0]ip address <IP Address> 24    #设置IP
-	Feb 13 2023 15:53:05-08:00 Huawei %%01IFNET/4/LINK_STATE(l)[0]:The line protocol
-	 IP on the interface GigabitEthernet0/0/0 has entered the UP state. 
+```shell
+[Huawei]interface g0/0/0    #进入端口g0/0/0
+[Huawei-GigabitEthernet0/0/0]ip address <IP Address> 24    #设置IP
+Feb 13 2023 15:53:05-08:00 Huawei %%01IFNET/4/LINK_STATE(l)[0]:The line protocol
+ IP on the interface GigabitEthernet0/0/0 has entered the UP state. 
 
-	[Huawei-GigabitEthernet0/0/0]display current-configuration    #查看当前信息
-	[V200R003C00]
-	#
-	 snmp-agent local-engineid 800007DB03000000000000
-	 snmp-agent 
-	#
-	 clock timezone China-Standard-Time minus 08:00:00
-	#
-	portal local-server load portalpage.zip
-	#
-	 drop illegal-mac alarm
-	#
-	 set cpu-usage threshold 80 restore 75
-	#
-	aaa 
-	 authentication-scheme default
-	 authorization-scheme default
-	 accounting-scheme default
-	 domain default 
-	 domain default_admin 
-	 local-user admin password cipher %$%$K8m.Nt84DZ}e#<0`8bmE3Uw}%$%$
-	 local-user admin service-type http
-	#
-	firewall zone Local
-	 priority 15
-	#
-	interface Ethernet0/0/0
-	#
-	interface Ethernet0/0/1
-	#
-	interface Ethernet0/0/2
-	#
-	interface Ethernet0/0/3
-	#
-	interface Ethernet0/0/4
-	#
-	interface Ethernet0/0/5
-	#
-	interface Ethernet0/0/6
-	#
-	interface Ethernet0/0/7
-	#
-	interface GigabitEthernet0/0/0
-	 ip address 192.168.1.1 255.255.255.0 
-	#
-	interface GigabitEthernet0/0/1
-	#
-	interface NULL0
-	#
-	user-interface con 0
-	 authentication-mode password
-	user-interface vty 0 4
-	user-interface vty 16 20
-	#
-	wlan ac
-	#
-	return
-	[Huawei-GigabitEthernet0/0/0]
+[Huawei-GigabitEthernet0/0/0]display current-configuration    #查看当前信息
+[V200R003C00]
+#
+ snmp-agent local-engineid 800007DB03000000000000
+ snmp-agent 
+#
+ clock timezone China-Standard-Time minus 08:00:00
+#
+portal local-server load portalpage.zip
+#
+ drop illegal-mac alarm
+#
+ set cpu-usage threshold 80 restore 75
+#
+aaa 
+ authentication-scheme default
+ authorization-scheme default
+ accounting-scheme default
+ domain default 
+ domain default_admin 
+ local-user admin password cipher %$%$K8m.Nt84DZ}e#<0`8bmE3Uw}%$%$
+ local-user admin service-type http
+#
+firewall zone Local
+ priority 15
+#
+interface Ethernet0/0/0
+#
+interface Ethernet0/0/1
+#
+interface Ethernet0/0/2
+#
+interface Ethernet0/0/3
+#
+interface Ethernet0/0/4
+#
+interface Ethernet0/0/5
+#
+interface Ethernet0/0/6
+#
+interface Ethernet0/0/7
+#
+interface GigabitEthernet0/0/0
+ ip address 192.168.1.1 255.255.255.0 
+#
+interface GigabitEthernet0/0/1
+#
+interface NULL0
+#
+user-interface con 0
+ authentication-mode password
+user-interface vty 0 4
+user-interface vty 16 20
+#
+wlan ac
+#
+return
+[Huawei-GigabitEthernet0/0/0]
+```

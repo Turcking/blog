@@ -109,6 +109,7 @@ VID  Status  Property      MAC-LRN Statistics Description
 ```shell
 [Huawei]vlan 10
 [Huawei-vlan10]mac-vlan 54-89-98-0D-7E-06
+[Huawei-vlan10]
 ```
 
 查看 MAC 地址与 VLAN 的关联

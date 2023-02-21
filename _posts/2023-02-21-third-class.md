@@ -53,12 +53,14 @@ Total 0 reserved vlan.
 ## 基于端口划分 VLAN
 
 首先使用 `interface interface-type interface-number` 进入需要配置的端口的接口配置视图。
+
 ```shell
 [Huawei]interface g0/0/1
 [Huawei-GigabitEthernet0/0/1]
 ```
 
 使用 `port link-type access` 将端口设置为 Access 模式，并用 `port default vlan vid` 将端口添加到某个 vlan 中。
+
 ```shell
 [Huawei-GigabitEthernet0/0/1]port link-type access
 [Huawei-GigabitEthernet0/0/1]port default vlan 10
@@ -66,6 +68,7 @@ Total 0 reserved vlan.
 ```
 
 可以通过 `display vlan` 验证配置结果。
+
 ```shell
 [Huawei]display vlan
 The total number of vlans is : 4
@@ -106,13 +109,15 @@ VID  Status  Property      MAC-LRN Statistics Description
 ## 基于 mac 地址划分 VLAN
 
 使用 `vlan [vid]` 进入 vlan 视图，使用命令 `mac-vlan mac-address [mac-address]` 将 MAC 地址与该 VLAN 进行关联。
+
 ```shell
 [Huawei]vlan 10
 [Huawei-vlan10]mac-vlan 54-89-98-0D-7E-06
 [Huawei-vlan10]
 ```
 
-查看 MAC 地址与 VLAN 的关联
+查看 MAC 地址与 VLAN 的关联。
+
 ```shell
 [Huawei]display mac-vlan mac-address all
 ---------------------------------------------------
@@ -126,6 +131,7 @@ Total MAC VLAN address count: 1
 ```
 
 配置端口到 `Hybrid` 模式，使用 `port hybrid untagged vlan [vid]` 允许传输 VLAN 的流量。
+
 ```shell
 [Huawei]interface g0/0/1
 [Huawei-GigabitEthernet0/0/1]port link-type hybrid
@@ -139,6 +145,7 @@ Info: This operation may take a few seconds. Please wait for a moment...done.
 
 使用命令 `port-group port-group-name` 创建并进入端口组。
 使用命令 `group-member interface-type interface-number to interface-type interface-number` 添加端口范围。
+
 ```shell
 [Huawei]port-group port5-9
 [Huawei-port-group-port5-9]group-member g0/0/5 to g0/0/9
@@ -165,13 +172,16 @@ Info: This operation may take a few seconds. Please wait for a moment...done.
 # 设置 Trunk 端口并允许 VLAN
 
 ## 创建 Trunk 端口
+
 使用命令 `interface interface-type interface-number` 进入相应端口的接口配置视图。
+
 ```shell
 [Huawei]interface g0/0/1
 [Huawei-GigabitEthernet0/0/1]
 ```
 
 使用命令 `port link-type trunk` 将端口设置为 Trunk 模式，并使用命令 `port trunk allow-pass vlan {{vlan-id} [to vlan-id2] | all}` 设置允许 Trunk 传输的 VLAN 。
+
 ```shell
 [Huawei-GigabitEthernet0/0/1]port link-type trunk
 [Huawei-GigabitEthernet0/0/1]port trunk allow-pass vlan all
@@ -183,6 +193,7 @@ Info: This operation may take a few seconds. Please wait for a moment...done.
 VLAN 1 是缺省 VLAN ，在实际工作中，出于安全性考虑，会根据需要在 Trunk 链路上移除 VLAN 1 。
 
 使用 `undo port trunk allow-pass vlan {{vlan-id} [to vlan-id2] | all}` 移除允许的 VLAN 。
+
 ```shell
 [Huawei-GigabitEthernet0/0/1]undo port trunk allow-pass vlan 1
 [Huawei-GigabitEthernet0/0/1]
@@ -191,6 +202,7 @@ VLAN 1 是缺省 VLAN ，在实际工作中，出于安全性考虑，会根据�
 # 查看当前端口配置
 
 使用命令 `display current-configuration` 查看所有端口的配置信息。
+
 ```shell
 [Huawei]display current-configuration 
 #

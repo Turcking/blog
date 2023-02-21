@@ -192,7 +192,7 @@ Info: This operation may take a few seconds. Please wait for a moment...done.
 
 VLAN 1 是缺省 VLAN ，在实际工作中，出于安全性考虑，会根据需要在 Trunk 链路上移除 VLAN 1 。
 
-使用 ```undo port trunk allow-pass vlan {{vlan-id} [to vlan-id2] | all}``` 移除允许的 VLAN 。
+使用 `undo port trunk allow-pass vlan "{{vlan-id} [to vlan-id2] | all}"` 移除允许的 VLAN 。
 
 ```shell
 [Huawei-GigabitEthernet0/0/1]undo port trunk allow-pass vlan 1

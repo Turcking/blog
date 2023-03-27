@@ -27,7 +27,6 @@ toc: true
 3. 配置route
 在中央交换机SW1上配置从SW1达到VLANIF20网段的静态路由，在车站交换机SW2上配置从SW2到VLANIF10网段的静态路由，实现跨网段通信。
 
-
 # 操作步骤
 
 ## 1.SW1-vlan
@@ -52,11 +51,11 @@ toc: true
 [SW1-GigabitEthernet0/0/2]port trunk allow-pass vlan 30  //透传和车站交换机SW2互连的VLAN 30
 [SW1-GigabitEthernet0/0/2]quit
 ```
-    
+
 ## 2.SW2-vlan
 
 ### 创建VLAN
- 
+
 ```shell
 <HUAWEI> system-view
 [HUAWEI]sysname SW2  //修改设备的名称为SW2
@@ -64,7 +63,7 @@ toc: true
 ```
 
 ### 将接口加入相应VLAN
- 
+
 ```shell
 [SW2]interface gigabitethernet 0/0/1  //进入GE端口0/0/1
 [SW2-GigabitEthernet0/0/1]port link-type access  //将与用户2相连接口的接口类型设置为access
@@ -75,19 +74,19 @@ toc: true
 [SW2-GigabitEthernet1/0/2]port trunk allow-pass vlan 30 //透传和中央交换机SW1互连的VLAN 30
 [SW2-GigabitEthernet1/0/2]quit
 ```
-    
+
 ## 3.SW1-route
 
 ### 创建VLANIF10并配置对应的IP地址，作为用户1的网关
- 
+
 ```shell
 [SW1]interface vlanif 10  //创建VLANIF10接口
 [SW1-Vlanif10]ip address 192.168.10.254 24  //配置IP地址，此IP地址是用户1的网关地址
 [SW1-Vlanif10]quit
 ```
- 
+
 ### 创建VLANIF30和对应的IP地址
- 
+
 ```shell
 [SW1]interface vlanif 30  //创建VLANIF30接口
 [SW1-Vlanif30]ip address 10.10.1.254 24  //配置互连的IP地址，此IP地址不能和用户1、用户2的IP地址冲突
@@ -95,35 +94,35 @@ toc: true
 ```
 
 ### 配置静态路由，使用户1可以访问用户2
- 
+
 ```shell
 [SW1]ip route-static 192.168.20.0 255.255.255.0 10.10.1.253 //目的IP是192.168.20.0/24网段的报文，转发下一跳是车站交换机SW2 VLANIF30的IP地址10.10.1.253
 ```
-    
+
 ## 4.SW2-route
 
-###创建VLANIF20并配置对应的IP地址，作为用户2的网关
- 
+### 创建VLANIF20并配置对应的IP地址，作为用户2的网关
+
 ```shell
 [SW2]interface vlanif 20  //创建VLANIF20接口
 [SW2-Vlanif20]ip address 192.168.20.254 24  //配置IP地址，此IP地址是用户2的网关地址
 [SW2-Vlanif20]quit
 ```
- 
+
 ### 创建VLANIF30和对应的IP地址
- 
+
 ```shell
 [SW2]interface vlanif 30  //创建VLANIF30接口
 [SW2-Vlanif30]ip address 10.10.1.253 24  //配置互连的IP地址
 [SW2-Vlanif30]quit
 ```
- 
+
 ### 配置静态路由，使用户2可以访问用户1
- 
+
 ```shell
 [SW2]ip route-static 192.168.10.0 255.255.255.0 10.10.1.254  //目的IP是192.168.10.0/24网段的报文，转发下一跳是中央交换机SW1 VLANIF 30的IP地址10.10.1.254
 ```
-    
+
 # 5.检查配置结果
 
 在VLAN 10中的用户1上配置IP地址为192.168.10.1/24，缺省网关为VLANIF10接口的IP地址192.168.10.254。

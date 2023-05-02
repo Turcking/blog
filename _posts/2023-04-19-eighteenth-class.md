@@ -39,7 +39,7 @@ RIP网络稳定以后，每个路由器会周期性地向邻居路由器通告�
 
 ## 进入 RIP
 
-可以使用 `rip <rip_id>` 进入一个 rip 空间。
+可以使用 `rip <rip_id>` 进入一个 rip 进程。
 
 ```shell
 [Huawei]rip 1

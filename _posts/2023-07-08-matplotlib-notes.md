@@ -27,7 +27,7 @@ matplotlib 庞大的代码库可能吓到很多人，但只要掌握简单的概
 
 ## 图形结构
 
-![图形结构]("https://matplotlib.org/_images/anatomy.png" "图形结构")
+![图形结构](https://matplotlib.org/_images/anatomy.png "图形结构")
 
 ### Figure 图形
 
@@ -35,6 +35,7 @@ matplotlib 庞大的代码库可能吓到很多人，但只要掌握简单的概
 一个图形可以有任意数量个表，但至少拥有一个表来让这个图形有用。
 
 创建图形的简单方法是使用 pyplot:
+
 ```python
 fig = plt.figure()  # 一个不包含任何表的图形
 fig.subtitle("No axes on this figure")  # 添加一个标签来让我们知道这是什么
@@ -48,19 +49,20 @@ fig, axs = plt.subplot_mosaic([["left", "right-top"],
 ### Axes 表
 
 这就是你真正绘图的区域。一个图形可以包含多个表，一个表只能被包含在一个图形中。
-一个表一般包含两个轴（3D 情况下是三个），每个表有一个标题（参见 [set_title()]("https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_title.html" "set_title()")），一个 x 标签（参见 [set_xlabel]("https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xlabel.html" "set_xlabel()")）和一个 y 标签（参见 [set_ylabel()]("https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_ylabel.html" "set_ylabel()")）。
+一个表一般包含两个轴（3D 情况下是三个），每个表有一个标题（参见 [set_title()](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_title.html "set_title()")），一个 x 标签（参见 [set_xlabel](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xlabel.html "set_xlabel()")）和一个 y 标签（参见 [set_ylabel()](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_ylabel.html "set_ylabel()")）。
 
 Axes 类及成员函数主要使用 OOP 接口，并拥有大多数在其上定义的绘图方法，例如 ax.plot():
+
 ```python
 fig, ax = plt.subplots()  # 创建包含一个表的图形
 ax.plot([1, 2, 3, 4], [1, 4, 2, 3])  # 绘制一条线
 ```
 
-![ax.plot() 演示图]("https://matplotlib.org/stable/_images/sphx_glr_quick_start_001.png" "ax.plot() 演示")
+![ax.plot() 演示图](https://matplotlib.org/stable/_images/sphx_glr_quick_start_001.png "ax.plot() 演示")
 
 ### Axis 轴
 
-这些是数字线状对象（[原文]("https://matplotlib.org.cn/tutorials/introductory/usage.html" "原文链接")是 number-line-like object 不知道咋翻译，但是 Rizline!），它们规定了图形的范围和刻度标签（标记刻度的字符串）。
+这些是数字线状对象（[原文](https://matplotlib.org.cn/tutorials/introductory/usage.html "原文链接")是 number-line-like object 不知道咋翻译，但是 Rizline!），它们规定了图形的范围和刻度标签（标记刻度的字符串）。
 刻度位置由 Locator 对象确定，而刻度标签由 Formatter 对象确定。正确的 Locator 与 Formatter 组合可以非常精细地控制刻度位置和标签。
 
 ### Artist 画
@@ -71,7 +73,9 @@ ax.plot([1, 2, 3, 4], [1, 4, 2, 3])  # 绘制一条线
 # 使用风格
 
 matplotlib 基本上有两种使用方法：
+
 - 显式创建图形和表，并调用它们的方法（ “面向对象风格（OO-style）”）。
+
 ```python
 x = np.linspace(0, 2, 100)  # 示例数据
 
@@ -85,7 +89,9 @@ ax.set_ylabel('y label')  # 为表添加 y 标签
 ax.set_title("Simple Plot")  # 为表添加标题
 ax.legend()  # 添加一个图例
 ```
+
 - 依赖 pyplot 隐式地创建和管理图形和表，以及使用 pyplot 函数进行绘图。
+
 ```python
 x = np.linspace(0, 2, 100)  # 一些数据
 
@@ -98,7 +104,9 @@ plt.ylabel('y label')
 plt.title("Simple Plot")
 plt.legend()
 ```
-- 嵌入在 GUI 应用程序中的 Matplotlib，完全放弃了 pyplot，[这]("https://matplotlib.org/stable/gallery/user_interfaces/embedding_in_tk_sgskip.html" "matplotlib 嵌入 tkinter 示例")是在 tkinter 中嵌入 matplotlib 的官方示例，请参阅[官方文档]("https://matplotlib.org/stable/gallery/user_interfaces/index.html" "Embedding Matplotlib in graphical user interfaces")了解更多信息：
+
+- 嵌入在 GUI 应用程序中的 Matplotlib，完全放弃了 pyplot，[这](https://matplotlib.org/stable/gallery/user_interfaces/embedding_in_tk_sgskip.html "matplotlib 嵌入 tkinter 示例")是在 tkinter 中嵌入 matplotlib 的官方示例，请参阅[官方文档](https://matplotlib.org/stable/gallery/user_interfaces/index.html "Embedding Matplotlib in graphical user interfaces")了解更多信息：
+
 ```python
 import tkinter
 
@@ -167,11 +175,13 @@ tkinter.mainloop()
 # 导入 matplotlib
 
 一般在导入时会因为名字太长而为它起别名：
+
 ```python
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 ```
+
 也有人会直接 `from matplotlib.pyplot import *`，但我没有这个习惯，并且考虑到这会导致分不清哪些是自己定义的，哪些是模块里的，所以这篇整理我会使用 `import matplotlib.pyplot`。
 
 # 基本用法
@@ -179,6 +189,7 @@ import numpy as np
 ## Hello world!
 
 这是一个类似于 Hello world 的程序。
+
 ```python
 #! /usr/bin/env python3
 
@@ -213,6 +224,7 @@ if __name__ == "__main__":
 ### 创建新图形
 
 使用 `matplotlib.pyplot.figure()` 创建一个新图形，让 world 显示在另外一个图形中。
+
 ```python
 #! /usr/bin/env python3
 
@@ -249,6 +261,7 @@ if __name__ == "__main__":
 在调用 `matplotlib.pyplot.figure()` 时加入参数 figsize，它的类型是一个两元素元祖（列表经过测试似乎也可以，但文档里写的是元祖），第一个元素是长度的英尺数，第二个是高度的英尺数。
 
 让我们把 Hello 和 world 的图形大小调整好：
+
 ```python
 #! /usr/bin/env python3
 
@@ -284,6 +297,7 @@ if __name__ == "__main__":
 
 为了修改这个标题，在调用 `matplotlib.pyplot.figure()` 时填入 num 参数，它可以接收一个数字（似乎小数会被取整，但不是四舍五入）或字符串。数字会设置图形的编号，而字符串会设置图形和窗口的标题。
 既然如此，给显示 Hello 的窗口命名为 Hello，显示 world 的命名为 world 吧：
+
 ```python
 #! /usr/bin/env python3
 
@@ -315,7 +329,7 @@ if __name__ == "__main__":
 
 ```
 
-[官方文档]("https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.figure.html" "matplotlib.pyplot.figure 文档")
+[官方文档](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.figure.html "matplotlib.pyplot.figure 文档")
 
 ## matplotlib.figure.Figure.subplots()
 
@@ -324,6 +338,7 @@ if __name__ == "__main__":
 ### 创建多个表
 
 在 `Figure.subplots()` 中传入 nrows（行数）和 ncols（列数）参数就能创建多个表了。
+
 ```python
 #! /usr/bin/env python3
 
@@ -352,7 +367,7 @@ if __name__ == "__main__":
 
 ```
 
-更多请参阅[官方文档]("https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure.subplots" "Figure.subplots()")
+更多请参阅[官方文档](https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure.subplots "Figure.subplots()")
 
 ## matplotlib.axes.Axes.plot()
 
@@ -364,6 +379,7 @@ if __name__ == "__main__":
 如果不传入 x 的坐标而只传 y 的，`Axes.plot()` 会从 x = 0 开始绘制这些点。
 
 画一个逗号：
+
 ```python
 #! /usr/bin/env python3
 
@@ -429,6 +445,7 @@ if __name__ == "__main__":
 	matplotlib.pyplot.show()
 
 ```
+
 ### 我的形状
 
 在调用 `Axes.plot()` 时传入 linestyle 或 ls 就能改变线型，这是官方文档提供的可用线型：
@@ -441,9 +458,10 @@ if __name__ == "__main__":
 |":" 或者 "dotted"|虚线（点）|
 |"none", "None", " " 或者 ""|什么都不画|
 
-当然也可以自己定义线型，~~但是我不会，~~还是建议看[官方文档]("https://matplotlib.org/stable/api/_as_gen/matplotlib.lines.Line2D.html#matplotlib.lines.Line2D.set_linestyle" "linestyle")
+当然也可以自己定义线型，~~但是我不会，~~还是建议看[官方文档](https://matplotlib.org/stable/api/_as_gen/matplotlib.lines.Line2D.html#matplotlib.lines.Line2D.set_linestyle "linestyle")
 
 画一个叹号：
+
 ```python
 #! /usr/bin/env python3
 
@@ -522,7 +540,7 @@ if __name__ == "__main__":
 
 ```
 
-更多内容参阅[官方文档]("https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.plot.html#matplotlib.axes.Axes.plot")
+更多内容参阅[官方文档](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.plot.html#matplotlib.axes.Axes.plot "Axes.plot()")
 
 ## matplotlib.axes.Axes.legend()
 
@@ -531,6 +549,7 @@ if __name__ == "__main__":
 ### 画线时就添加标签
 
 在调用 `matplotlib.axes.Axes.plot()` 时可以传入 label 参数，之后调用 `matplotlib.axes.Axes.legend()` 就能显示各线的图例了。
+
 ```python
 #! /usr/bin/env python3
 
@@ -564,7 +583,8 @@ if __name__ == "__main__":
 ```
 
 也可以获取画出的线的句柄传给 `Axes.legend()`，它就只会绘制传去的线的图例。
-可以把句柄想象成指针，但 python 中实际上传过去的就是对象
+可以把句柄想象成指针，但 python 中实际上传过去的就是对象。
+
 ```python
 #! /usr/bin/env python3
 
@@ -602,6 +622,7 @@ if __name__ == "__main__":
 在画完线后，可以在调用 `Axes.legend()` 时传入 label 参数，它会按序把标签对应到线上。
 此时在画线时传入的 label 参数就不再有用了。
 这种方法 label 参数名可以不用写。
+
 ```python
 #! /usr/bin/env python3
 
@@ -636,6 +657,7 @@ if __name__ == "__main__":
 
 也可以在传入 label 参数时同时传入 handles 参数，它会把 label 里的标签按序对应上 handles 里的句柄，此时画线时传入的 label 参数也没用了。
 可以把 handles 参数写在 label 参数之前，这样就不用写参数名了。
+
 ```python
 #! /usr/bin/env python3
 
@@ -669,7 +691,7 @@ if __name__ == "__main__":
 
 ```
 
-[官方文档]("https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.legend.html" "matplotlib.axes.Axes.legend")
+[官方文档](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.legend.html "matplotlib.axes.Axes.legend")
 
 ## matplotlib.axes.Axes.set_xlim()/.set_ylim()
 
@@ -714,13 +736,14 @@ if __name__ == "__main__":
 
 ```
 
-[文档]("https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xlim.html" "matplotlib.axes.Axes.set_xlim()")
+[文档](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xlim.html "matplotlib.axes.Axes.set_xlim()")
 
 ### 设置 y 轴的视图限制
 
 `Axes.set_ylim()` 与 x 一样，只不过第一个参数是 bottom，第二个是 top。
 
 现在，你只能看到 Hello, world! 的脚底了：
+
 ```python
 #! /usr/bin/env python3
 
@@ -753,7 +776,7 @@ if __name__ == "__main__":
 
 ```
 
-[文档]("https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_ylim.html" "matplotlib.axes.Axes.set_ylim()")
+[文档](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_ylim.html "matplotlib.axes.Axes.set_ylim()")
 
 ## matplotlib.axes.Axes.set_xlabel()/.set_ylabel()/.set_label()
 
@@ -762,6 +785,7 @@ if __name__ == "__main__":
 ### 设置 x 轴标签
 
 `Axes.set_xlabel()` 可以传一个字符串作为轴标签：
+
 ```python
 #! /usr/bin/env python3
 
@@ -794,11 +818,12 @@ if __name__ == "__main__":
 
 ```
 
-[文档]("https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xlabel.html" "matplotlib.axes.Axes.set_xlabel()")
+[文档](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xlabel.html "matplotlib.axes.Axes.set_xlabel()")
 
 ### 设置 y 轴标签
 
 `Axes.set_ylabel()` 与上一个相同：
+
 ```python
 #! /usr/bin/env python3
 
@@ -832,11 +857,12 @@ if __name__ == "__main__":
 
 ```
 
-[文档]("https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_ylabel.html" "matplotlib.axes.Axes.set_ylabel()")
+[文档](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_ylabel.html "matplotlib.axes.Axes.set_ylabel()")
 
 ## 设置表标题
 
 `Axes.set_title()` 同样：
+
 ```python
 #! /usr/bin/env python3
 
@@ -871,7 +897,7 @@ if __name__ == "__main__":
 
 ```
 
-[文档]("https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_title.html" "matplotlib.axes.Axes.set_title()")
+[文档](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_title.html "matplotlib.axes.Axes.set_title()")
 
 ## matplotlib.axes.Axes.set_xticks()/.set_yticks()
 
@@ -881,6 +907,7 @@ if __name__ == "__main__":
 当需要设置标签时，第二个参数的长度需要与第一个参数的长度相同
 
 注意：如有必要，它将改变“轴”的视图限制，以便所有给定标签都可见：
+
 ```python
 #! /usr/bin/env python3
 
@@ -913,16 +940,17 @@ if __name__ == "__main__":
 	matplotlib.pyplot.show()
 
 ```
+
 这个演示中，表不会因为设置了 x 的视图限制而只显示 Hello，因为在下面的 `Axes.set_xticks()` 中包含了 `!` 所在的刻度，导致右侧视图限制拓到了 `!` 上。
 如果还要只显示 Hello，就需要在设置了刻度标签后再设置视图限制。
 
-[文档]("https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xticks.html" "Axes.set_xticks()")
+[文档](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xticks.html "Axes.set_xticks()")
 
 ### 设置 x 刻度位置和可选标签
 
 `Axes.set_yticks()` 与 `Axes.set_xticks()` 相同，只是坐标轴从 x 变到了 y，这就不再演示了。
 
-[文档]("https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_yticks.html" "Axes.set_yticks()")
+[文档](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_yticks.html "Axes.set_yticks()")
 
 ## matplotlib.axis.Axis.set_major_formatter()
 
@@ -932,6 +960,7 @@ if __name__ == "__main__":
 
 `Axis.set_major_formatter()` 接收一个函数，这个函数会被传入两个参数：x 和 pos，参数 x 是该刻度在所在坐标轴上标识的值，是一个浮点数。参数 pos 是该刻度在所在坐标轴的所有显示的刻度中的从 1 开始的索引值，是一个整数。
 对于参数 x 的使用，一个直观的例子，让 x 轴显示时间：
+
 ```python
 #! /usr/bin/env python3
 
@@ -972,6 +1001,7 @@ if __name__ == "__main__":
 ### 以索引值进行格式化
 
 对于参数 pos 的使用，没找到什么好例子，就直接输出吧：
+
 ```python
 #! /usr/bin/env python3
 
@@ -1007,9 +1037,10 @@ if __name__ == "__main__":
 	matplotlib.pyplot.show()
 
 ```
+
 可以发现，右下角显示的坐标也受这个函数的影响，并且在格式化类似右下角显示的坐标时传入的参数 pos 为 None。
 
-[官方文档]("https://matplotlib.org/stable/api/_as_gen/matplotlib.axis.Axis.set_major_formatter.html" "matplotlib.axis.Axis.set_major_formatter()")
+[官方文档](https://matplotlib.org/stable/api/_as_gen/matplotlib.axis.Axis.set_major_formatter.html "matplotlib.axis.Axis.set_major_formatter()")
 
 ## matplotlib.axes.Axes.grid()
 
@@ -1020,6 +1051,7 @@ if __name__ == "__main__":
 一般来说，在不显示网格线时，直接调用此方法会显示网格线，但是这样调用的意思是切换网格线的显示状态。也就是说，当网格线显示时，直接调用该方法将不会显示网格线。
 可以在调用时传入 visible 参数，该参数默认值是 None，在调用该方法时，如果 visible 参数值是 None 并且没有给除 which 和 axis 参数的其它参数时，它会切换网格线的显示状态。
 可以给 visible 参数传入一个布尔值来指定网格线的显示状态：
+
 ```python
 #! /usr/bin/env python3
 
@@ -1063,6 +1095,7 @@ if __name__ == "__main__":
 
 可以给 axis 参数传入 "x", "y" 或 "both" 来指定操作的是哪个坐标轴。
 只显示 x 轴的网格线：
+
 ```python
 #! /usr/bin/env python3
 
@@ -1102,7 +1135,7 @@ if __name__ == "__main__":
 
 ```
 
-[官方文档]("https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.grid.html" "matplotlib.axes.Axes.grid()")
+[官方文档](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.grid.html "matplotlib.axes.Axes.grid()")
 
 ## matplotlib.lines.Line2D.set()
 
@@ -1111,6 +1144,7 @@ if __name__ == "__main__":
 ### 修改数据
 
 可以在调用 `Line2D.set()` 时传入 data 来修改一条线表示的数据，比如把叹号改成问号：
+
 ```python
 #! /usr/bin/env python3
 
@@ -1143,9 +1177,11 @@ if __name__ == "__main__":
 	matplotlib.pyplot.show()
 
 ```
+
 调用 `Line2D.set()` 时传入 linewidth 也可以修改线宽。
 
 使用 `Line2D.set_data()` 修改数据会更方便：
+
 ```python
 #! /usr/bin/env python3
 
@@ -1190,14 +1226,16 @@ if __name__ == "__main__":
 |set_ls()/set_linestyle()|ls/linestyle|线型|
 |set_lw()/set_linewidth()|lw/linewidth|线宽|
 
-[官方文档]("https://matplotlib.org/stable/api/_as_gen/matplotlib.lines.Line2D.html#matplotlib.lines.Line2D.set" "matplotlib.lines.Line2D.set()")
+[官方文档](https://matplotlib.org/stable/api/_as_gen/matplotlib.lines.Line2D.html#matplotlib.lines.Line2D.set "matplotlib.lines.Line2D.set()")
 
 ## 显示中文
 
 matplotlib 默认没法显示中文，因为默认的英文字体无法显示汉字。
 在 \*nix 中，可以使用 `fc-list` 查看支持的字体，用 `fc-list :lang=zh` 查看支持中文的字体。
 有两种方式可以修改 matplotlib 的字体：
+
 - 通过 matplotlib.rc。
+
 ```python
 #! /usr/bin/env python3
 
@@ -1230,7 +1268,9 @@ if __name__ == "__main__":
 
 	matplotlib.pyplot.show()
 ```
+
 - 通过 matplotlib 的 font_manager。
+
 ```python
 #! /usr/bin/env python3
 
@@ -1281,6 +1321,7 @@ if __name__ == "__main__":
 ## Tkinter
 
 这是一段演示：
+
 ```python
 #! /usr/bin/env python3
 
@@ -1421,5 +1462,5 @@ canvas.get_tk_widget().pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=True)
 tkinter.mainloop()
 ```
 
-这是[官网]("https://matplotlib.org/stable/gallery/user_interfaces/embedding_in_tk_sgskip.html" "嵌入 Tk")的演示，它还创建了 toolbar，监听了键盘事件，使用 `tkinter.Scale()` 来控制 matplotlib 的数据等。
+这是[官网](https://matplotlib.org/stable/gallery/user_interfaces/embedding_in_tk_sgskip.html "嵌入 Tk")的演示，它还创建了 toolbar，监听了键盘事件，使用 `tkinter.Scale()` 来控制 matplotlib 的数据等。
 
